@@ -10,15 +10,23 @@ namespace SeaFight.Core
     {
         public bool IsShoot { get; set; }
 
+        public IGamingObject Content { set; get; }
+
+        public bool IsOccupied { set; get; }
+
         public int X { set; get; }
        
         public int Y { set; get; }
 
 
-
         public virtual void DropTheBomb(IBomb bomb)
         {
             IsShoot = true;
+
+            if (Content != null)
+            {
+                Content.DropTheBomb(bomb);
+            }
         }
     }
 }

@@ -19,12 +19,7 @@ namespace SeaFight
 
         private void hitButton_Click(object sender, EventArgs e)
         {
-            BatMobile mobile = new BatMobile();
-            mobile.Hit();
-            IHitable hitable = (IHitable)mobile;
-            hitable.Hit();
-            IWarMachine watMachine = (IWarMachine)mobile;
-            watMachine.Hit();
+
         }
     }
 }

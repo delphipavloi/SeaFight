@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SeaFight.Core
 {
-    public interface ISeaField : IBombable
+    public interface IGamingObject : IBombable
     {
-        bool PlaceShip(IShip ship);
-        void AddCells(List<ICell> cells);      
 
     }
 }

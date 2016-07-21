@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SeaFight.Core
 {
-    public interface ISeaField : IBombable
+    public enum Rotation
     {
-        bool PlaceShip(IShip ship);
-        void AddCells(List<ICell> cells);      
-
+        Horizontal,
+        Vertical
     }
 }

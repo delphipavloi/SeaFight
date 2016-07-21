@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SeaFight.Core
 {
-    public class Deck : Cell
+    public class Deck : IGamingObject
     {
+
+        public int X { set; get; }
+
+        public int Y { set; get; }
+
         IShip ship;
 
         public Deck(IShip ship)
@@ -15,10 +21,8 @@ namespace SeaFight.Core
             this.ship = ship;
         }
 
-        public override void DropTheBomb(IBomb bomb)
+        public void DropTheBomb(IBomb bomb)
         {
-            base.DropTheBomb(bomb);
-
             if (ship != null)
             {
                 ship.DropTheBomb(bomb);

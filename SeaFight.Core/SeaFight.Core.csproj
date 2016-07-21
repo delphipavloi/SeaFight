@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cell.cs" />
+    <Compile Include="Deck.cs" />
     <Compile Include="IBomb.cs" />
+    <Compile Include="IBombable.cs" />
     <Compile Include="ICell.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="IPlayer.cs" />

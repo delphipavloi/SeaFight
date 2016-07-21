@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SeaFight.Core
 {
-    public interface IBomb
+    public interface IBomb : IGamingObject
     {
         int X { set; get; }
         int Y { set; get; }        

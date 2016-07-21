@@ -8,6 +8,8 @@ namespace SeaFight.Core
 {
     public interface IShip : IBombable
     {
-        List<ICell> Decks { set; get; }        
+        List<Deck> Decks { set; get; }
+
+        void Rotate(Rotation rotation);   
     }
 }
