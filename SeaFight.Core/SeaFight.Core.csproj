@@ -46,11 +46,14 @@
     <Compile Include="IBombable.cs" />
     <Compile Include="ICell.cs" />
     <Compile Include="IEngine.cs" />
+    <Compile Include="IGamingObject.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="ISeaField.cs" />
     <Compile Include="IShip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rotation.cs" />
     <Compile Include="SeaField.cs" />
+    <Compile Include="SimpleShip.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

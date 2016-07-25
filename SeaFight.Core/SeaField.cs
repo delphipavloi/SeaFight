@@ -44,18 +44,25 @@ namespace SeaFight.Core
                 ICell current = cellsToPlace[i];
                 current.IsOccupied = true;
                 current.Content = ship.Decks[i];
-
-            }
+                OccupyAround(current);
+            }            
 
             return true;
         }
 
         private void OccupyAround(ICell cell)
         {
-            bool isOnRightEdge, isOnLeftEdge, isOnTopEdge, isOnBottomEdge;
+            GetNeighbours(cell).ForEach(c => c.IsOccupied = true);
+        }
+
+        private List<ICell> GetNeighbours(ICell cell)
+        {
+            bool isOnRightEdge = false, isOnLeftEdge = false, isOnTopEdge = false, isOnBottomEdge = false;
+            List<ICell> neighbours = new List<ICell>();
+
             if (cell.X < width - 1)
             {
-                cells[cell.X + 1, cell.Y].IsOccupied = true;
+                neighbours.Add(cells[cell.X + 1, cell.Y]);
             }
             else
             {
@@ -64,7 +71,7 @@ namespace SeaFight.Core
 
             if (cell.X > 0)
             {
-                cells[cell.X - 1, cell.Y].IsOccupied = true;
+                neighbours.Add(cells[cell.X - 1, cell.Y]);
             }
             else
             {
@@ -73,7 +80,7 @@ namespace SeaFight.Core
 
             if (cell.Y < height - 1)
             {
-                cells[cell.X, cell.Y + 1].IsOccupied = true;
+                neighbours.Add(cells[cell.X, cell.Y + 1]);
             }
             else
             {
@@ -82,14 +89,57 @@ namespace SeaFight.Core
 
             if (cell.Y > 0)
             {
-                cells[cell.X, cell.Y - 1].IsOccupied = true;
+                neighbours.Add(cells[cell.X, cell.Y - 1]);
             }
             else
             {
                 isOnTopEdge = true;
             }
-        }
 
+           // TODO: Refactor
+            if (isOnTopEdge)
+            {
+                if (isOnLeftEdge)
+                {
+                    neighbours.Add(cells[cell.X + 1, cell.Y + 1]);
+                }
+                else if (isOnRightEdge)
+                {
+                    neighbours.Add(cells[cell.X - 1, cell.Y + 1]);
+                }
+                else
+                {
+                    neighbours.Add(cells[cell.X + 1, cell.Y + 1]);
+                    neighbours.Add(cells[cell.X - 1, cell.Y + 1]);
+                }
+            }
+            else if (isOnBottomEdge)
+            {
+                if (isOnLeftEdge)
+                {
+                    neighbours.Add(cells[cell.X + 1, cell.Y - 1]);
+                }
+                else if (isOnRightEdge)
+                {
+                    neighbours.Add(cells[cell.X - 1, cell.Y - 1]);
+                }
+                else
+                {
+                    neighbours.Add(cells[cell.X + 1, cell.Y - 1]);
+                    neighbours.Add(cells[cell.X - 1, cell.Y - 1]);
+                }
+            }
+            else
+            {
+                neighbours.Add(cells[cell.X + 1, cell.Y + 1]);
+                neighbours.Add(cells[cell.X - 1, cell.Y + 1]);
+                neighbours.Add(cells[cell.X + 1, cell.Y - 1]);
+                neighbours.Add(cells[cell.X - 1, cell.Y - 1]);
+            }
+
+
+            return neighbours;
+        }
 
     }
 }

@@ -11,8 +11,8 @@ namespace SeaFight.Core
         int X { set; get; }
         int Y { set; get; }
         bool IsShoot { set; get; }
-        public IGamingObject Content { set; get; }
+        IGamingObject Content { set; get; }
 
-        public bool IsOccupied { set; get; }
+        bool IsOccupied { set; get; }
     }
 }
