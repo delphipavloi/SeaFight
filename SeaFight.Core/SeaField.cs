@@ -96,6 +96,14 @@ namespace SeaFight.Core
             }
         }
 
+        private bool IsCellCoordinateOnBorder(int coord, int axisMax)
+        {
+            if ((coord == axisMax) || (coord < 0))
+                return true;
+            else
+                return false;
+        }
+
         private List<ICell> GetNeighbours(ICell cell)
         {
             List<ICell> neighbours = new List<ICell>();
@@ -104,7 +112,7 @@ namespace SeaFight.Core
             foreach(Direction direction in Enum.GetValues(typeof(Direction)))
             {
                 GetDirectionShift(direction, out xShift, out yShift);
-                if (((!(((cell.X + xShift) == width) || ((cell.X + xShift) < 0)))) && (!(((cell.Y + yShift) == height) || ((cell.Y + yShift) < 0))))
+                if (!IsCellCoordinateOnBorder(cell.X + xShift, width) && !IsCellCoordinateOnBorder(cell.Y + yShift, height))
                 {
                     neighbours.Add(cells[cell.X + xShift, cell.Y + yShift]);
                 }
