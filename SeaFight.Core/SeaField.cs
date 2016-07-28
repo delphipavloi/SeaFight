@@ -47,53 +47,11 @@ namespace SeaFight.Core
             for (int i = 0; i < cellsToPlace.Count; i++)
             {
                 ICell current = cellsToPlace[i];
-                current.IsOccupied = true;
                 current.Content = ship.Decks[i];
                 OccupyAround(current);
             }            
 
             return true;
-        }
-
-        private void GetDirectionShift(Direction where, out int xShift, out int yShift)
-        {
-            xShift = 0;
-            yShift = 0;
-            switch (where)
-            {
-                case Direction.BootomLeft:
-                    xShift = -1;
-                    yShift = 1;
-                    break;
-                case Direction.Bottom:
-                    xShift = 0;
-                    yShift = 1;
-                    break;
-                case Direction.BottomRight:
-                    xShift = 1;
-                    yShift = 1;
-                    break;
-                case Direction.Left:
-                    xShift = -1;
-                    yShift = 0;
-                    break;
-                case Direction.Right:
-                    xShift = 1;
-                    yShift = 0;
-                    break;
-                case Direction.Top:
-                    xShift = 0;
-                    yShift = -1;
-                    break;
-                case Direction.TopLeft:
-                    xShift = -1;
-                    yShift = -1;
-                    break;
-                case Direction.TopRight:
-                    xShift = 1;
-                    yShift = -1;
-                    break;
-            }
         }
 
         private bool IsCellCoordinateOnBorder(int coord, int axisMax)
@@ -107,16 +65,14 @@ namespace SeaFight.Core
         private List<ICell> GetNeighbours(ICell cell)
         {
             List<ICell> neighbours = new List<ICell>();
-            int xShift = 0;
-            int yShift = 0;
-            foreach(Direction direction in Enum.GetValues(typeof(Direction)))
-            {
-                GetDirectionShift(direction, out xShift, out yShift);
-                if (!IsCellCoordinateOnBorder(cell.X + xShift, width) && !IsCellCoordinateOnBorder(cell.Y + yShift, height))
+            for (int xShift = -1; xShift <= 1; xShift++)
+                for (int yShift = -1; yShift <= 1; yShift++)
                 {
-                    neighbours.Add(cells[cell.X + xShift, cell.Y + yShift]);
+                    if (!IsCellCoordinateOnBorder(cell.X + xShift, width) && !IsCellCoordinateOnBorder(cell.Y + yShift, height))
+                    {
+                        neighbours.Add(cells[cell.X + xShift, cell.Y + yShift]);
+                    }
                 }
-            }
             return neighbours;
         }
 
