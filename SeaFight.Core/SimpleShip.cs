@@ -8,19 +8,17 @@ namespace SeaFight.Core
 {
     public class SimpleShip : IShip
     {
-        List<Deck> decks;
+        public List<Deck> Decks { set; get; }
 
-        public SimpleShip(int deckCount)
+        public SimpleShip(int deckCount) 
         {
-            decks = new List<Deck>();
+            Decks = new List<Deck>();
 
             for (int i = 0; i < deckCount; i++)
             {
                 Decks.Add(new Deck(this));
             }
-        }
-
-        public List<Deck> Decks { set; get; }
+        }       
 
         public void DropTheBomb(IBomb bomb)
         {
@@ -29,7 +27,23 @@ namespace SeaFight.Core
 
         public void Rotate(Rotation rotation)
         {
-
+            //TODO: Create rotation logic
         }
+
+        public void MoveShipToPoint(int x, int y)
+        {
+            int deltaX, deltaY;
+            Deck head = Decks.First();
+            deltaX = x - head.X;
+            deltaY = y - head.Y;
+
+            foreach (Deck deck in Decks)
+            {   
+                //TODO: Add boundaries validation
+                deck.X += deltaX;
+                deck.Y += deltaY;
+            }
+        }
+
     }
 }

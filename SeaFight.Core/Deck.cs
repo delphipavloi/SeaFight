@@ -16,9 +16,16 @@ namespace SeaFight.Core
 
         IShip ship;
 
-        public Deck(IShip ship)
+        public Deck(IShip ship) : this(ship, 0, 0)
+        {
+            
+        }
+
+        public Deck(IShip ship, int x, int y)
         {
             this.ship = ship;
+            X = x;
+            Y = y;
         }
 
         public void DropTheBomb(IBomb bomb)

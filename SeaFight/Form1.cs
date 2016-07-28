@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SeaFight.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,8 @@ namespace SeaFight
 
         private void hitButton_Click(object sender, EventArgs e)
         {
-
+            ShipFactory shipFactory = new ShipFactory();
+            IShip ship = shipFactory.GetSingle();
         }
     }
 }

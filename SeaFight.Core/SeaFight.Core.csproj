@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="GamingEvent.cs" />
+    <Compile Include="GamingEventType.cs" />
     <Compile Include="IBomb.cs" />
     <Compile Include="IBombable.cs" />
     <Compile Include="ICell.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="IGamingObject.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="ISeaField.cs" />
+    <Compile Include="ISession.cs" />
     <Compile Include="IShip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rotation.cs" />

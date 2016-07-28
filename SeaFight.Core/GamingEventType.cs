@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace SeaFight.Core
 {
-    public enum Rotation
+    public enum GamingEventType
     {
-        Right,
-        Left
+        Login,
+        Logout,
+        DropTheBomb,
+        StopGame,
+        PlaceShip,
     }
 }
