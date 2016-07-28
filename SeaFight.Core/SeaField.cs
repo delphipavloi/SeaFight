@@ -103,6 +103,7 @@ namespace SeaFight.Core
                 isOnTopEdge = true;
             }
 
+            //i had really tried
            // TODO: Refactor
             if (isOnTopEdge)
             {
