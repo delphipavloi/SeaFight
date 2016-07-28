@@ -16,8 +16,9 @@ namespace SeaFight.Core
 
             for (int i = 0; i < deckCount; i++)
             {
-                Decks.Add(new Deck(this));
+                decks.Add(new Deck(0, i));
             }
+            Decks = decks;
         }
 
         public List<Deck> Decks { set; get; }

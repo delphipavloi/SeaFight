@@ -11,4 +11,16 @@ namespace SeaFight.Core
         Horizontal,
         Vertical
     }
+
+    public enum Direction
+    {
+        TopLeft,
+        Top,
+        TopRight,
+        Right,
+        BottomRight,
+        Bottom,
+        BootomLeft,
+        Left
+    }
 }
