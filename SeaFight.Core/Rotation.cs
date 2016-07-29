@@ -8,7 +8,7 @@ namespace SeaFight.Core
 {
     public enum Rotation
     {
-        Horizontal,
-        Vertical
+        Right,
+        Left
     }
 }

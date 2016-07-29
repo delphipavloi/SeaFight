@@ -18,11 +18,11 @@ namespace SeaFight.Core
        
         public int Y { set; get; }
 
-        public Cell(int x = 0, int y = 0)
-        {
-            this.IsOccupied = false;
-            this.X = x;
-            this.Y = y;
+        public Cell(int x, int y)
+        {            
+            X = x;
+            Y = y;
+            IsOccupied = false;
         }
 
         public virtual void DropTheBomb(IBomb bomb)

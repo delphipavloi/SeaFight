@@ -8,20 +8,18 @@ namespace SeaFight.Core
 {
     public class SimpleShip : IShip
     {
-        List<Deck> decks;
+        public List<Deck> Decks { set; get; }
 
         public SimpleShip(int deckCount)
         {
-            decks = new List<Deck>();
+            Decks = new List<Deck>();
 
             for (int i = 0; i < deckCount; i++)
             {
-                decks.Add(new Deck(0, i));
+                Decks.Add(new Deck(this));
             }
-            Decks = decks;
+            
         }
-
-        public List<Deck> Decks { set; get; }
 
         public void DropTheBomb(IBomb bomb)
         {

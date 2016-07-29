@@ -14,11 +14,13 @@ namespace SeaFight.Core
         public SeaField(int width, int height)
         {
             cells = new Cell[width, height];
-            for (int i = 0; i < width - 1; i++)
-                for (int j = 0; j < height - 1; j++)
+
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
                 {
                     cells[i, j] = new Cell(i,j);
                 }
+
             this.height = height;
             this.width = width;
         }
