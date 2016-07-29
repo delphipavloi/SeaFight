@@ -11,7 +11,6 @@ namespace SeaFight.Core
         void StartGame();
         void Initialize();
         void StopGame();
-        void AddPlayer(IPlayer player);
-        void RemovePlayer(IPlayer player);                     
+        void SetSession(ISession session);                     
     }
 }

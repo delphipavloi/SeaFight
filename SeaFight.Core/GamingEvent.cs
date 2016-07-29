@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SeaFight.Core
 {
-    public enum Rotation
+    public class GamingEvent
     {
-        Right,
-        Left
+        public long Timestamp { set; get; }
+        public GamingEventType EventType { set; get; }        
+
     }
 }

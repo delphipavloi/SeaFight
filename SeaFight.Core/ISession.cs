@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SeaFight.Core
 {
-    public enum Rotation
+    public interface ISession
     {
-        Right,
-        Left
+        int Id { set; get; }
+        void AddPlayer(IPlayer player);
+        void RemovePlayer(IPlayer player);
     }
 }
