@@ -22,7 +22,7 @@ namespace SeaFight.Core
 
         public void DropTheBomb(IBomb bomb)
         {
-            
+
         }
 
         public void Rotate(Rotation rotation)

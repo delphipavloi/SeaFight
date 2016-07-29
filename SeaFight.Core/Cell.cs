@@ -15,7 +15,7 @@ namespace SeaFight.Core
         public bool IsOccupied { set; get; }
 
         public int X { set; get; }
-       
+
         public int Y { set; get; }
 
         public Cell(int x, int y)
