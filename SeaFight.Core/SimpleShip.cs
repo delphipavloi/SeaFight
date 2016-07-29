@@ -25,7 +25,7 @@ namespace SeaFight.Core
 
         }
 
-        public void Rotate(Rotation rotation)
+        public void Rotate(Rotation rotation, int maxX, int maxY)
         {
             int deltaX;
             int deltaY;
@@ -53,13 +53,13 @@ namespace SeaFight.Core
             }
         }
 
-        private bool IsDeckRotatable(Deck deck, Rotation rotation, int detlaX, int deltaY)
+        private bool IsDeckRotatable(Deck deck, Rotation rotation, int deltaX, int deltaY)
         {
             switch (rotation)
             {
                 case Rotation.Left:
-
-                    break;
+                    if (((deck.X - deltaX) < 0) || (deck.X - deltaX) > )
+                        break;
                 case Rotation.Right:
 
                     break;
