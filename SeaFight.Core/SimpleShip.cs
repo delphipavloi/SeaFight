@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace SeaFight.Core
 
             for (int i = 0; i < deckCount; i++)
             {
-                Decks.Add(new Deck(this));
+                Decks.Add(new Deck(this, 0, i));
             }
         }       
 
@@ -25,44 +26,46 @@ namespace SeaFight.Core
 
         }
 
-        public void Rotate(Rotation rotation, int maxX, int maxY)
+        public bool Rotate(Rotation rotation)
         {
-            int deltaX;
-            int deltaY;
-            Deck deckHead = Decks.First();
+            int deltaX, deltaY;
+            Deck head = Decks.First();
             if (IsShipRotatable())
             {
                 GetRotationDirection(out deltaY, out deltaX);
-                switch (rotation)
+                for (int i = 1; i < Decks.Count; i++)
                 {
-                    case Rotation.Left:
-                        for (int i = 1; i < Decks.Count - 1; i++)
-                        {
-                            Decks.ElementAt(i).X = deckHead.X - deltaX * i;
-                            Decks.ElementAt(i).Y = deckHead.Y - deltaY * i;
-                        }
-                        break;
-                    case Rotation.Right:
-                        for (int i = 1; i < Decks.Count - 1; i++)
-                        {
-                            Decks.ElementAt(i).X = deckHead.X + deltaX * i;
-                            Decks.ElementAt(i).Y = deckHead.Y + deltaY * i;
-                        }
-                        break;
+                    int newX = 0, newY = 0;
+                    switch (rotation)
+                    {
+                        case Rotation.Left:
+                            newX = head.X - deltaX * i;
+                            newY = head.Y - deltaY * i;
+                            break;
+                        case Rotation.Right:
+                            newX = head.X + deltaX * i;
+                            newY = head.Y + deltaY * i;
+                            break;
+                    }
+                    if (AreCoordinatesNotNegative(newX, newY))
+                    {
+                        Decks.ElementAt(i).X = newX;
+                        Decks.ElementAt(i).Y = newY;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
 
-        private bool IsDeckRotatable(Deck deck, Rotation rotation, int deltaX, int deltaY)
+        private bool AreCoordinatesNotNegative(int x, int y)
         {
-            switch (rotation)
+            if ((x >= 0) && (y >= 0))
             {
-                case Rotation.Left:
-                    if (((deck.X - deltaX) < 0) || (deck.X - deltaX) > )
-                        break;
-                case Rotation.Right:
-
-                    break;
+                return true;
             }
             return false;
         }
@@ -78,11 +81,11 @@ namespace SeaFight.Core
 
         private void GetRotationDirection(out int xAxis, out int yAxis)
         {
-            xAxis = Decks.ElementAt(0).X - Decks.ElementAt(1).X;
-            yAxis = Decks.ElementAt(0).X - Decks.ElementAt(1).X;
+            xAxis = Decks.ElementAt(1).X - Decks.ElementAt(0).X;
+            yAxis = Decks.ElementAt(1).Y - Decks.ElementAt(0).Y;
         }
 
-        public void MoveShipToPoint(int x, int y)
+        public bool MoveShipToPoint(int x, int y)
         {
             int deltaX, deltaY;
             Deck head = Decks.First();
@@ -90,11 +93,18 @@ namespace SeaFight.Core
             deltaY = y - head.Y;
 
             foreach (Deck deck in Decks)
-            {   
-                //TODO: Add boundaries validation
-                deck.X += deltaX;
-                deck.Y += deltaY;
+            {
+                if (AreCoordinatesNotNegative(deck.X + deltaX, deck.Y + deltaY))
+                {
+                    deck.X += deltaX;
+                    deck.Y += deltaY;
+                }
+                else
+                {
+                    return false;
+                }
             }
+            return true;
         }
 
     }
