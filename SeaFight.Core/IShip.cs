@@ -10,6 +10,6 @@ namespace SeaFight.Core
     {
         List<Deck> Decks { set; get; }
 
-        void Rotate(Rotation rotation);   
+        bool Rotate(Rotation rotation);   
     }
 }

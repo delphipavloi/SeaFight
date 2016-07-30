@@ -24,7 +24,7 @@ namespace SeaFight.Core
             this.height = height;
             this.width = width;
         }
-       
+
         public void AddCells(List<ICell> cells)
         {
             cells.AddRange(cells);
@@ -49,7 +49,6 @@ namespace SeaFight.Core
             for (int i = 0; i < cellsToPlace.Count; i++)
             {
                 ICell current = cellsToPlace[i];
-                current.IsOccupied = true;
                 current.Content = ship.Decks[i];
                 OccupyAround(current);
             }            
@@ -57,95 +56,31 @@ namespace SeaFight.Core
             return true;
         }
 
-        private void OccupyAround(ICell cell)
+        private bool IsCellCoordinateOnBorder(int coord, int axisMax)
         {
-            GetNeighbours(cell).ForEach(c => c.IsOccupied = true);
+            if ((coord == axisMax) || (coord < 0))
+                return true;
+            else
+                return false;
         }
 
         private List<ICell> GetNeighbours(ICell cell)
         {
-            bool isOnRightEdge = false, isOnLeftEdge = false, isOnTopEdge = false, isOnBottomEdge = false;
             List<ICell> neighbours = new List<ICell>();
-
-            if (cell.X < width - 1)
-            {
-                neighbours.Add(cells[cell.X + 1, cell.Y]);
-            }
-            else
-            {
-                isOnRightEdge = true;
-            }
-
-            if (cell.X > 0)
-            {
-                neighbours.Add(cells[cell.X - 1, cell.Y]);
-            }
-            else
-            {
-                isOnLeftEdge = true;
-            }
-
-            if (cell.Y < height - 1)
-            {
-                neighbours.Add(cells[cell.X, cell.Y + 1]);
-            }
-            else
-            {
-                isOnBottomEdge = true;
-            }
-
-            if (cell.Y > 0)
-            {
-                neighbours.Add(cells[cell.X, cell.Y - 1]);
-            }
-            else
-            {
-                isOnTopEdge = true;
-            }
-
-           // TODO: Refactor
-            if (isOnTopEdge)
-            {
-                if (isOnLeftEdge)
+            for (int xShift = -1; xShift <= 1; xShift++)
+                for (int yShift = -1; yShift <= 1; yShift++)
                 {
-                    neighbours.Add(cells[cell.X + 1, cell.Y + 1]);
+                    if (!IsCellCoordinateOnBorder(cell.X + xShift, width) && !IsCellCoordinateOnBorder(cell.Y + yShift, height))
+                    {
+                        neighbours.Add(cells[cell.X + xShift, cell.Y + yShift]);
+                    }
                 }
-                else if (isOnRightEdge)
-                {
-                    neighbours.Add(cells[cell.X - 1, cell.Y + 1]);
-                }
-                else
-                {
-                    neighbours.Add(cells[cell.X + 1, cell.Y + 1]);
-                    neighbours.Add(cells[cell.X - 1, cell.Y + 1]);
-                }
-            }
-            else if (isOnBottomEdge)
-            {
-                if (isOnLeftEdge)
-                {
-                    neighbours.Add(cells[cell.X + 1, cell.Y - 1]);
-                }
-                else if (isOnRightEdge)
-                {
-                    neighbours.Add(cells[cell.X - 1, cell.Y - 1]);
-                }
-                else
-                {
-                    neighbours.Add(cells[cell.X + 1, cell.Y - 1]);
-                    neighbours.Add(cells[cell.X - 1, cell.Y - 1]);
-                }
-            }
-            else
-            {
-                neighbours.Add(cells[cell.X + 1, cell.Y + 1]);
-                neighbours.Add(cells[cell.X - 1, cell.Y + 1]);
-                neighbours.Add(cells[cell.X + 1, cell.Y - 1]);
-                neighbours.Add(cells[cell.X - 1, cell.Y - 1]);
-            }
-
-
             return neighbours;
+        }
+
+        private void OccupyAround(ICell cell)
+        {
+            GetNeighbours(cell).ForEach(c => c.IsOccupied = true);
         }
 
     }
