@@ -1,11 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeaFight", "SeaFight\SeaFight.csproj", "{70FA1A3E-624E-41C5-BC7C-1CDB5F8C10CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeaFight.Core", "SeaFight.Core\SeaFight.Core.csproj", "{4EC532AF-F6C1-4476-8AEB-FDABEB31DC79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{989585FB-85F1-467A-BA12-74DA22043F5D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeaFight.CoreTests", "SeaFight.CoreTests\SeaFight.CoreTests.csproj", "{8485F51A-7C3E-433E-B71B-2C95796491F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,10 @@ Global
 		{4EC532AF-F6C1-4476-8AEB-FDABEB31DC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC532AF-F6C1-4476-8AEB-FDABEB31DC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EC532AF-F6C1-4476-8AEB-FDABEB31DC79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8485F51A-7C3E-433E-B71B-2C95796491F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8485F51A-7C3E-433E-B71B-2C95796491F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8485F51A-7C3E-433E-B71B-2C95796491F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8485F51A-7C3E-433E-B71B-2C95796491F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
