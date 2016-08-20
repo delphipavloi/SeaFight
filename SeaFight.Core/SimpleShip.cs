@@ -27,16 +27,18 @@ namespace SeaFight.Core
 
         public void Rotate(Rotation rotation)
         {
-            if (rotation == Rotation.Right && Decks[0].X == Decks[1].X && Decks[0].Y < Decks[1].Y)
+            if (rotation == Rotation.Right && Decks[0].X == Decks[1].X)
             {
-                //================ 25 - for debug. FiledSize verification required =============
+                if (Decks[0].Y < Decks[1].Y)
+                {
+                    //================ 25 - for debug. FiledSize verification required =============
                     if (Decks.Count <= 25 - Decks[0].X)
                     {
                         for (int i = 1; i < Decks.Count; i++)
                         {
                             Decks[i].X += i;
                             Decks[i].Y = Decks[0].Y;
-                        }   
+                        }
                     }
                     else
                     {
@@ -47,72 +49,162 @@ namespace SeaFight.Core
                             Decks[i].Y = Decks[0].Y;
                         }
                     }
+                } else if (Decks[0].Y > Decks[1].Y)
+                {
+                    if (Decks[0].X - Decks.Count >= 0)
+                    {
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X -= i;
+                            Decks[i].Y = Decks[0].Y;
+                        }
+                    }
+                    else
+                    {
+                        Decks[0].X = Decks.Count - 1;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X = Decks[0].X + i;
+                            Decks[i].Y = Decks[0].Y;
+                        }
+                    }
+                }
             }
-            else if (rotation == Rotation.Right && Decks[0].Y == Decks[1].Y && Decks[0].X > Decks[1].X)
+            if (rotation == Rotation.Right && Decks[0].Y == Decks[1].Y)
             {
-                if (Decks.Count <= 25 - Decks[0].Y)
+                if (Decks[0].X > Decks[1].X)
                 {
-                    for (int i = 1; i < Decks.Count; i++)
+                    if (Decks[0].Y - Decks.Count >= 0 )
                     {
-                        Decks[i].X = Decks[0].X;
-                        Decks[i].Y += i;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X = Decks[0].X;
+                            Decks[i].Y -= i;
+                        }
                     }
-                }
-                else
-                {
-                    Decks[0].Y = 25 - Decks.Count;
-                    for (int i = 1; i < Decks.Count; i++)
+                    else
                     {
-                        Decks[i].Y = Decks[0].Y + i;
-                        Decks[i].X = Decks[0].X;
+                        Decks[0].Y = Decks.Count - 1;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].Y = Decks[0].Y - i;
+                            Decks[i].X = Decks[0].X;
+                        }
+                    }
+                } else if (Decks[0].X < Decks[1].X)
+                {
+                    if (Decks[0].Y - Decks.Count >= 0)
+                    {
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X = Decks[0].X;
+                            Decks[i].Y += i;
+                        }
+                    }
+                    else
+                    {
+                        Decks[0].Y = Decks.Count - 1;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].Y = Decks[0].Y + i;
+                            Decks[i].X = Decks[0].X;
+                        }
                     }
                 }
             }
-
+            
             if (rotation == Rotation.Left && Decks[0].X == Decks[1].X)
             {
-                if (Decks.Count <= 25 - Decks[0].X)
+                if (Decks[0].Y < Decks[1].Y)
                 {
-                    for (int i = 1; i < Decks.Count; i++)
+                    if (Decks.Count <= 25 - Decks[0].X)
                     {
-                        Decks[i].X -= i;
-                        Decks[i].Y = Decks[0].Y;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X += i;
+                            Decks[i].Y = Decks[0].Y;
+                        }
+                    }
+                    else
+                    {
+                        Decks[0].X = 25 - Decks.Count;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X = Decks[0].X + i;
+                            Decks[i].Y = Decks[0].Y;
+                        }
+                    }
+                } else if (Decks[0].Y > Decks[1].Y)
+                {
+                    if (Decks[0].X - Decks.Count >= 0)
+                    {
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X -= i;
+                            Decks[i].Y = Decks[0].Y;
+                        }
+                    }
+                    else
+                    {
+                        Decks[0].X = 25 - Decks.Count;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].X = Decks[0].X - i;
+                            Decks[i].Y = Decks[0].Y;
+                        }
                     }
                 }
-                else
+                
+            }
+            if (rotation == Rotation.Left && Decks[0].Y == Decks[1].Y)
+            {
+                if (Decks[0].X < Decks[1].X)
                 {
-                    Decks[0].X = 25 - Decks.Count;
-                    for (int i = 1; i < Decks.Count; i++)
+                    if (Decks.Count <= 25 - Decks[0].Y)
                     {
-                        Decks[i].X = Decks[0].X - i;
-                        Decks[i].Y = Decks[0].Y;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].Y += i;
+                            Decks[i].X = Decks[0].X;
+                        }
+                    }
+
+                    else
+                    {
+                        Decks[0].Y = Decks.Count - 1;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].Y = Decks[0].Y + i;
+                            Decks[i].X = Decks[0].X;
+                        }
                     }
                 }
-            }
-            else if (rotation == Rotation.Left && Decks[0].Y == Decks[1].Y)
-            {
-            if (Decks[0].Y - Decks.Count >= 0)
-             {
-                 for (int i = 1; i < Decks.Count; i++)
-                 {
-                     Decks[i].Y -= i;
-                     Decks[i].X = Decks[0].X;
-                 }
-             }
-           
-            else
-            {
-                Decks[0].Y = Decks.Count - 1;
-                for (int i = 1; i < Decks.Count; i++)
+                else if (Decks[0].X > Decks[1].X)
                 {
-                    Decks[i].Y = Decks[0].Y - i;
-                    Decks[i].X = Decks[0].X;
+                    if (Decks[0].Y - Decks.Count >= 0)
+                    {
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].Y -= i;
+                            Decks[i].X = Decks[0].X;
+                        }
+                    }
+
+                    else
+                    {
+                        Decks[0].Y = Decks.Count - 1;
+                        for (int i = 1; i < Decks.Count; i++)
+                        {
+                            Decks[i].Y = Decks[0].Y - i;
+                            Decks[i].X = Decks[0].X;
+                        }
+                    }
                 }
-            }
+            
            
          }
 
-            //TODO: Create rotation logic (+ 4 loops)
+            //TODO: Refactor rotation logic
         }
 
         public void MoveShipToPoint(int x, int y)
