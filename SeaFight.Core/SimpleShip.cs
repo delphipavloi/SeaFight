@@ -70,7 +70,7 @@ namespace SeaFight.Core
                     }
                 }
             }
-            if (rotation == Rotation.Right && Decks[0].Y == Decks[1].Y)
+             else if (rotation == Rotation.Right && Decks[0].Y == Decks[1].Y)
             {
                 if (Decks[0].X > Decks[1].X)
                 {
@@ -156,7 +156,7 @@ namespace SeaFight.Core
                 }
                 
             }
-            if (rotation == Rotation.Left && Decks[0].Y == Decks[1].Y)
+             else if (rotation == Rotation.Left && Decks[0].Y == Decks[1].Y)
             {
                 if (Decks[0].X < Decks[1].X)
                 {
