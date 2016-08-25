@@ -28,6 +28,12 @@ namespace SeaFight.Core
             Y = y;
         }
 
+        public Deck( int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
         public void DropTheBomb(IBomb bomb)
         {
             if (ship != null)
