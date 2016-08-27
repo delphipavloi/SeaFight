@@ -10,6 +10,8 @@ namespace SeaFight.Core
     {
         public List<Deck> Decks { set; get; }
 
+        private Rotation currentRotation = Rotation.Left;
+
         public SimpleShip(int deckCount) 
         {
             Decks = new List<Deck>();
@@ -27,7 +29,7 @@ namespace SeaFight.Core
 
         public void Rotate(Rotation rotation)
         {
-            //TODO: Create rotation logic
+            currentRotation = rotation;
         }
 
         public void MoveShipToPoint(int x, int y)
